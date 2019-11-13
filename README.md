@@ -1,11 +1,10 @@
-# M17SDKCoreKit.framework
+# M17SDKCoreKit
 
 ## Intallation
 ### Prerequisites
 To use the M17SDKCoreKit for iOS Swift and Objective-C, you need:
 - iOS 10.0 or later as the deployment target.
-- Xcode 10 or later.
-- For now, M17SDKCoreKit is only able to be installed through _Carthage_. We'll make it support manual itegration and Cocoapods in future.
+- Xcode 11 or later.
 
 ### Carthage
 1. Get Carthage by running `brew install carthage`
@@ -14,10 +13,7 @@ To use the M17SDKCoreKit for iOS Swift and Objective-C, you need:
 dependencies in the _Cartfile_:
 
     ```
-    github "17media/M17SDKCoreKit.framework" "0.1.0-beta.1"
-    github "Alamofire/Alamofire" "5.0.0-rc.3"
-    github "Alamofire/AlamofireImage" "4.0.0-beta.6"
-    github "SnapKit/SnapKit" ~> 5.0.0
+    github "17media/M17SDK-ios" "0.1.0-beta.2"
     ```
 	
 1. Run `carthage update --platform ios`
@@ -33,20 +29,20 @@ dependencies in the _Cartfile_:
 
     ```
     $(SRCROOT)/Carthage/Build/iOS/M17SDKCoreKit.framework
-    $(SRCROOT)/Carthage/Build/iOS/Alamofire.framework
-    $(SRCROOT)/Carthage/Build/iOS/AlamofireImage.framework
-    $(SRCROOT)/Carthage/Build/iOS/SnapKit.framework
     ```
 
 - Add the paths to the copied frameworks to the “Output Files”.
 
     ```
     $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/M17SDKCoreKit.framework
-    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework
-    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/AlamofireImage.framework
-    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework
     ```
-    
+### Manually
+If you prefer not to use any of the aforementioned dependency managers, you can integrate M17SDK into your project manually.
+1. Download and unzip the [framework](https://github.com/17media/M17SDK-ios/releases).
+1. Drag the `.framework` into your application’s Xcode project (tick _Copy items if needed_).
+1. Select your App target -> _General_ -> _Frameworks, Libraries and Embedded Content_. The framework should be _Embedded & Sign_.
+![Image](https://github.com/17media/M17SDK-ios/blob/master/embed-framework-into-project.png)
+
 ## Usage
 ### Import
 - Declare `@import M17SDKCoreKit;` in _.m_ files to access classes or protocols.
@@ -67,7 +63,6 @@ To setup a set of configuration for live list view controller.
 The view has to confirm this protocol to implement your custom live cell layout.
 
 ### How to get the default live list view controller
-
     
     // Create default config.
     M17SDKLiveListConfig *config = [M17SDKLiveListConfig defaultConfig];
