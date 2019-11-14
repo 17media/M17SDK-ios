@@ -6,41 +6,25 @@ To use the M17SDKCoreKit for iOS Swift and Objective-C, you need:
 - iOS 10.0 or later as the deployment target.
 - Xcode 11 or later.
 
+### CocoaPods
+[CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate M17SDKCoreKit into your Xcode project using CocoaPods, specify it in your _Podfile_:
+
+    
+    pod 'M17SDKCoreKit', '0.1.0-beta.2'
+    
+
 ### Carthage
-1. Get Carthage by running `brew install carthage`
-1. Create a _Cartfile_ in the same directory where your `.xcodeproj` or `.xcworkspace` is
-1. List the
-dependencies in the _Cartfile_:
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate M17SDKCoreKit into your Xcode project using Carthage, specify it in your _Cartfile_:
 
-    ```
+    
     github "17media/M17SDK-ios" "0.1.0-beta.2"
-    ```
+    
 	
-1. Run `carthage update --platform ios`
-1. A `Cartfile.resolved` file and a `Carthage` directory will appear in the same directory where your `.xcodeproj` or `.xcworkspace` is
-1. Drag the built `.framework` binaries from `Carthage/Build/<platform>` into your application’s Xcode project (untick _Copy items if needed_).
-1. On your application targets’ _Build Phases_ settings tab, click the _+_ icon and choose _New Run Script Phase_. Create a Run Script in which you specify your shell (ex: `/bin/sh`), add the following contents to the script area below the shell:
-
-    ```sh
-    /usr/local/bin/carthage copy-frameworks
-    ```
-
-- Add the paths to the frameworks under “Input Files".
-
-    ```
-    $(SRCROOT)/Carthage/Build/iOS/M17SDKCoreKit.framework
-    ```
-
-- Add the paths to the copied frameworks to the “Output Files”.
-
-    ```
-    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/M17SDKCoreKit.framework
-    ```
 ### Manually
-If you prefer not to use any of the aforementioned dependency managers, you can integrate M17SDK into your project manually.
+If you prefer not to use any of the aforementioned dependency managers, you can integrate M17SDKCoreKit into your project manually.
 1. Download and unzip the [framework](https://github.com/17media/M17SDK-ios/releases).
 1. Drag the `.framework` into your application’s Xcode project (tick _Copy items if needed_).
-1. Select your App target -> _General_ -> _Frameworks, Libraries and Embedded Content_. The framework should be _Embedded & Sign_.
+1. On your application targets’ _General_ settings tab, section _Frameworks, Libraries and Embedded Content_, set the framework to _Embedded & Sign_.
 ![Image](https://github.com/17media/M17SDK-ios/blob/master/embed-framework-into-project.png)
 
 ## Usage
