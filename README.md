@@ -29,12 +29,17 @@ If you prefer not to use any of the aforementioned dependency managers, you can 
 
 ## Usage
 ### Import
-- Declare `@import M17SDKCoreKit;` in _.m_ files to access classes or protocols.
+- Import _M17SDKCoreKit_ in _.m_ files to access classes or protocols.
+
+```objective-c
+@import M17SDKCoreKit;
+```
+
 - Use forward declarations in _.h_ files if you want to reference classes or protocols in an Objective-C interface. For example:
 
-    ```
-    @protocal M17SDKLiveCellLayout;
-    ```
+```objective-c
+@protocal M17SDKLiveCellLayout;
+```
 
 ### Classes
 #### M17SDKRootCoordinator
@@ -47,40 +52,44 @@ To setup a set of configuration for live list view controller.
 The view has to confirm this protocol to implement your custom live cell layout.
 
 ### How to get the default live list view controller
-    
-    // Create default config.
-    M17SDKLiveListConfig *config = [M17SDKLiveListConfig defaultConfig];
-    
-    // New the coordinator.
-    M17SDKRootCoordinator *root = [[M17SDKRootCoordinator alloc] init];
-    
-    // Create a new live list view controller by cofig.
-    UIViewController *vc = [root createLiveListViewControllerWithConfig:config];
-    
-    // Embed, present ,push or do whatever you want.
-    [self presentViewController:vc animated:YES completion:nil];
+
+```objective-c
+// Create default config.
+M17SDKLiveListConfig *config = [M17SDKLiveListConfig defaultConfig];
+
+// New the coordinator.
+M17SDKRootCoordinator *root = [[M17SDKRootCoordinator alloc] init];
+
+// Create a new live list view controller by cofig.
+UIViewController *vc = [root createLiveListViewControllerWithConfig:config];
+
+// Embed, present ,push or do whatever you want.
+[self presentViewController:vc animated:YES completion:nil];
+```
     
 ### How to setup your custom layout for live cells
 1. Subclass a UIView to confirm _M17SDKLiveCellLayout_ protocol.
 
-    `@interface DummyView : UIView <M17SDKLiveCellLayout>`
+```objective-c
+@interface DummyView : UIView <M17SDKLiveCellLayout>
+```
     
 2. The protocol has two properties, one is _coverImageView_, the other is _streamerNameLabel_. Implement each property to bind the data from M17SDK with your custom view. These two properties can be implemented by Storyboard(IBOutlet), Xib(IBOutlet), or code(without IBOutlet).
 
-    ```
-    @property (strong, nonatomic) IBOutlet UIImageView *coverImageView;
-    @property (strong, nonatomic) IBOutlet UILabel *streamerNameLabel;
-    ```
+```objective-c
+@property (strong, nonatomic) IBOutlet UIImageView *coverImageView;
+@property (strong, nonatomic) IBOutlet UILabel *streamerNameLabel;
+```
     
 3. Implement the _LiveCellLayoutHandler_ block. The block will be called when the collection view dequeues cells and insert the views into the cells. Because cells are reused, you must always generate a new UIView<M17SDKLiveCellLayout> instance in block.
     
-    ```
-    config.liveCellLayoutHandler = ^UIView<M17SDKLiveCellLayout> * _Nonnull{
-        UIView<M17SDKLiveCellLayout> *view = [DummyView createDummyView];
-        return view;
-    };
-    
-    UIViewController *vc = [root createLiveListViewControllerWithConfig:config];
-    ```
+```objective-c
+config.liveCellLayoutHandler = ^UIView<M17SDKLiveCellLayout> * _Nonnull{
+	UIView<M17SDKLiveCellLayout> *view = [DummyView createDummyView];
+	return view;
+};
+
+UIViewController *vc = [root createLiveListViewControllerWithConfig:config];
+```
     
 4. Run and see the result.
