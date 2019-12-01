@@ -1,38 +1,38 @@
-# M17SDKCoreKit
+# M17SDK
 
 ## Intallation
 ### Prerequisites
-To use the M17SDKCoreKit for iOS Swift and Objective-C, you need:
+To use the M17SDK for iOS Swift and Objective-C, you need:
 - iOS 10.0 or later as the deployment target.
 - Xcode 11 or later.
 
 ### CocoaPods
-[CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate M17SDKCoreKit into your Xcode project using CocoaPods, specify it in your _Podfile_:
+[CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate M17SDK into your Xcode project using CocoaPods, specify it in your _Podfile_:
 
     
-    pod 'M17SDKCoreKit', '0.1.0-beta.2'
+    pod 'M17SDK', '0.1.0-beta.4'
     
 
 ### Carthage
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate M17SDKCoreKit into your Xcode project using Carthage, specify it in your _Cartfile_:
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate M17SDK into your Xcode project using Carthage, specify it in your _Cartfile_:
 
     
-    github "17media/M17SDK-ios" "0.1.0-beta.2"
+    github "17media/M17SDK-ios" "0.1.0-beta.4"
     
 	
 ### Manually
-If you prefer not to use any of the aforementioned dependency managers, you can integrate M17SDKCoreKit into your project manually.
+If you prefer not to use any of the aforementioned dependency managers, you can integrate M17SDK into your project manually.
 1. Download and unzip the [framework](https://github.com/17media/M17SDK-ios/releases).
 1. Drag the `.framework` into your application’s Xcode project (tick _Copy items if needed_).
 1. On your application targets’ _General_ settings tab, section _Frameworks, Libraries and Embedded Content_, set the framework to _Embedded & Sign_.
-![Image](https://github.com/17media/M17SDK-ios/blob/master/embed-framework-into-project.png)
+![Image](https://github.com/17media/M17SDK-ios/blob/master/embed-framework-into-your-project.png)
 
 ## Usage
 ### Import
-- Import _M17SDKCoreKit_ in _.m_ files to access classes or protocols.
+- Import _M17SDK_ in _.m_ files to access classes or protocols.
 
 ```objective-c
-@import M17SDKCoreKit;
+@import M17SDK;
 ```
 
 - Use forward declarations in _.h_ files if you want to reference classes or protocols in an Objective-C interface. For example:
