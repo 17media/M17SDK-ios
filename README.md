@@ -45,7 +45,7 @@ If you prefer not to use any of the aforementioned dependency managers, you can 
 #### M17SDKRootCoordinator
 In charge of generating and navigating view controllers.
 
-#### M17SDKLiveListConfig
+#### M17SDKLiveListConfiguration
 To setup a set of configuration for live list view controller.
 
 #### M17SDKLiveCellLayout
@@ -55,13 +55,13 @@ The view has to confirm this protocol to implement your custom live cell layout.
 
 ```objective-c
 // Create default config.
-M17SDKLiveListConfig *config = [M17SDKLiveListConfig defaultConfig];
+M17SDKLiveListConfiguration *config = [M17SDKLiveListConfiguration defaultConfig];
 
 // New the coordinator.
 M17SDKRootCoordinator *root = [[M17SDKRootCoordinator alloc] init];
 
 // Create a new live list view controller by cofig.
-UIViewController *vc = [root createLiveListViewControllerWithConfig:config];
+UIViewController *vc = [root createLiveListViewControllerWithConfiguration:config];
 
 // Embed, present ,push or do whatever you want.
 [self presentViewController:vc animated:YES completion:nil];
