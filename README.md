@@ -5,7 +5,7 @@
 - [Classes, Enums and Protocols](https://github.com/17media/M17SDK-ios#classes-enums-and-protocols)
 - [Launch SDK](https://github.com/17media/M17SDK-ios#launch-sdk)
 - [Create live list view controller in default cell layout](https://github.com/17media/M17SDK-ios#create-live-list-view-controller-in-default-cell-layout)
-- [Setup your custom layout for live cells] (https://github.com/17media/M17SDK-ios#setup-your-custom-layout-for-live-cells)
+- [Setup your custom layout for live cells](https://github.com/17media/M17SDK-ios#setup-your-custom-layout-for-live-cells)
 
 ## Intallation
 ### Prerequisites
