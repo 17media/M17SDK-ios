@@ -67,7 +67,7 @@ This protocol defines the abstract interfaces of the live cell layout. Confirm t
 M17SDKConfiguration *config = [[M17SDKConfiguration alloc] initWithLicenseKey:@"jYfYR8jmh5AQTlCciBv2"];
 
 // Set the user UUID of your platform to SDK if needed.
-config.userIdentifier = "My user UUID"
+config.userIdentifier = @"My user UUID";
 
 // Launch the SDK.
 [M17SDK lauchWithConfiguration:config completion:^(NSError * _Nullable error) {
@@ -127,5 +127,3 @@ config.liveCellLayoutHandler = ^UIView<M17SDKLiveCellLayout> * _Nonnull{
 
 UIViewController *vc = [root createLiveListViewControllerWithConfig:config];
 ```
-    
-4. Run and see the result.
