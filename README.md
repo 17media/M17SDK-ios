@@ -17,22 +17,35 @@ To use the M17SDK for iOS Swift and Objective-C, you need:
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate M17SDK into your Xcode project using CocoaPods, specify it in your _Podfile_:
 
     
-    pod 'M17SDK', '0.1.0-beta.5'
+    pod 'M17SDK', '0.1.0-beta.8'
     
 
 ### Carthage
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate M17SDK into your Xcode project using Carthage, specify it in your _Cartfile_:
 
     
-    github "17media/M17SDK-ios" "0.1.0-beta.5"
+    github "17media/M17SDK-ios" "0.1.0-beta.8"
+    github "SDWebImage/SDWebImage" ~> 5.0.0
+    github "SnapKit/SnapKit" ~> 5.0.0
+    github "pubnub/swift" ~> 2.0
     
-	
-### Manually
-If you prefer not to use any of the aforementioned dependency managers, you can integrate M17SDK into your project manually.
-1. Download and unzip the [framework](https://github.com/17media/M17SDK-ios/releases).
-1. Drag the `.framework` into your application’s Xcode project (tick _Copy items if needed_).
-1. On your application targets’ _General_ settings tab, section _Frameworks, Libraries and Embedded Content_, set the framework to _Embedded & Sign_.
-![Image](https://github.com/17media/M17SDK-ios/blob/master/embed-framework-into-your-project.png)
+On your application targets’ Build Phases settings tab, click the + icon and choose New Run Script Phase. Create a Run Script in which you specify your shell (ex: /bin/sh), add the following contents to the script area below the shell:
+
+    /usr/local/bin/carthage copy-frameworks
+
+Add the paths to the frameworks you want to use under “Input Files". For example:
+
+    $(SRCROOT)/Carthage/Build/iOS/M17SDK.framework
+    $(SRCROOT)/Carthage/Build/iOS/PubNub.framework
+    $(SRCROOT)/Carthage/Build/iOS/SDWebImage.framework
+    $(SRCROOT)/Carthage/Build/iOS/SnapKit.framework
+
+Add the paths to the copied frameworks to the “Output Files”. For example:
+
+    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/M17SDK.framework
+    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PubNub.framework
+    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SDWebImage.framework
+    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework
 
 ## Usage
 ### Import
@@ -55,8 +68,11 @@ In charge of validating license key and launch the SDK.
 #### M17SDKConfiguration
 To setup a set of configurations for _M17SDK_ launcher.
 
-### M17SDKAuthError
+#### M17SDKAuthError
 Error codes of SDK authorization error.
+
+#### M17SDKLiveFilterFactory
+Get region filters, label filters and user Id filters from this factory. These filters is used to define the live rooms that you want to show on live list.
 
 #### M17SDKRootCoordinator
 In charge of generating and navigating view controllers.
@@ -77,7 +93,7 @@ M17SDKConfiguration *config = [[M17SDKConfiguration alloc] initWithLicenseKey:@"
 config.userIdentifier = @"My user UUID";
 
 // Launch the SDK.
-[M17SDK lauchWithConfiguration:config completion:^(NSError * _Nullable error) {
+[M17SDK launchWithConfiguration:config completion:^(NSError * _Nullable error) {
 	if (!error) {
 	    NSLog(@"Authorized!");
 	} else {
@@ -91,11 +107,17 @@ config.userIdentifier = @"My user UUID";
 - **Please make sure that you call others M17 SDK APIs after the launch completion callback returned without any errors,** or you would get unexpected result. For example, you would get _nil_ value when creating _LiveListViewController_.
 - If you get the error, please check the error message. Please refer _M17SDKAuthError_ and use _Switch-case_ to handle the error properly.
 
-### Create live list view controller in default cell layout
+### Create live list view controller with default cell layout
 
 ```objective-c
-// Create default config.
-M17SDKLiveListConfiguration *config = [M17SDKLiveListConfiguration defaultConfig];
+/**
+ There are three types of filter. `regionFilters`, `labelFilters`, `userIdFilters`.
+ These functions return all fiters by default. You can check the id and modify the array.
+*/
+NSArray<M17SDKRegionFilter *> *rfs =  [M17SDKLiveFilterFactory regionFilters];
+
+// You MUST initialize config with one kind of filter.
+M17SDKLiveListConfiguration *config = [M17SDKLiveListConfiguration initWithRegions:rfs];
 
 // Create the coordinator.
 M17SDKRootCoordinator *root = [[M17SDKRootCoordinator alloc] init];
