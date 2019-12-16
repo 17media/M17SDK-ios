@@ -117,7 +117,7 @@ config.userIdentifier = @"My user UUID";
 NSArray<M17SDKRegionFilter *> *rfs =  [M17SDKLiveFilterFactory regionFilters];
 
 // You MUST initialize config with one kind of filter.
-M17SDKLiveListConfiguration *config = [M17SDKLiveListConfiguration initWithRegions:rfs];
+M17SDKLiveListConfiguration *config = [[M17SDKLiveListConfiguration alloc] initWithRegions:rfs];;
 
 // Create the coordinator.
 M17SDKRootCoordinator *root = [[M17SDKRootCoordinator alloc] init];
