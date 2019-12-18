@@ -1,8 +1,9 @@
 # M17SDK
 
+For complete document, welcome to visit our [document page](https://17media.github.io/M17SDK-ios/).
+
 - [Intallation](https://github.com/17media/M17SDK-ios#intallation)
 - [Usage](https://github.com/17media/M17SDK-ios#Usage)
-- [Classes, Enums and Protocols](https://github.com/17media/M17SDK-ios#classes-enums-and-protocols)
 - [Launch SDK](https://github.com/17media/M17SDK-ios#launch-sdk)
 - [Create live list view controller in default cell layout](https://github.com/17media/M17SDK-ios#create-live-list-view-controller-in-default-cell-layout)
 - [Setup your custom layout for live cells](https://github.com/17media/M17SDK-ios#setup-your-custom-layout-for-live-cells)
@@ -60,28 +61,6 @@ Add the paths to the copied frameworks to the “Output Files”. For example:
 ```objective-c
 @protocol M17SDKLiveCellLayout;
 ```
-
-### Classes, Enums and Protocols
-#### M17SDK
-In charge of validating license key and launch the SDK.
-
-#### M17SDKConfiguration
-To setup a set of configurations for _M17SDK_ launcher.
-
-#### M17SDKAuthError
-Error codes of SDK authorization error.
-
-#### M17SDKLiveFilterFactory
-Get region filters, label filters and user Id filters from this factory. These filters is used to define the live rooms that you want to show on live list.
-
-#### M17SDKRootCoordinator
-In charge of generating and navigating view controllers.
-
-#### M17SDKLiveListConfiguration
-To setup a set of configurations for live list view controller.
-
-#### M17SDKLiveCellLayout
-This protocol defines the abstract interfaces of the live cell layout. Confirm this protocol to customize your own live cells.
 
 ### Launch SDK
 
