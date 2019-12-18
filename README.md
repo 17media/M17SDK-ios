@@ -58,7 +58,7 @@ Add the paths to the copied frameworks to the “Output Files”. For example:
 - Use forward declarations in _.h_ files if you want to reference classes or protocols in an Objective-C interface. For example:
 
 ```objective-c
-@protocal M17SDKLiveCellLayout;
+@protocol M17SDKLiveCellLayout;
 ```
 
 ### Classes, Enums and Protocols
