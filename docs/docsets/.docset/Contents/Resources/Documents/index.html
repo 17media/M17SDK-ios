@@ -93,10 +93,11 @@
             
             <h1 id='m17sdk' class='heading'>M17SDK</h1>
 
+<p>For complete document, welcome to visit our <a href="https://17media.github.io/M17SDK-ios/">document page</a>.</p>
+
 <ul>
 <li><a href="https://github.com/17media/M17SDK-ios#intallation">Intallation</a></li>
 <li><a href="https://github.com/17media/M17SDK-ios#Usage">Usage</a></li>
-<li><a href="https://github.com/17media/M17SDK-ios#classes-enums-and-protocols">Classes, Enums and Protocols</a></li>
 <li><a href="https://github.com/17media/M17SDK-ios#launch-sdk">Launch SDK</a></li>
 <li><a href="https://github.com/17media/M17SDK-ios#create-live-list-view-controller-in-default-cell-layout">Create live list view controller in default cell layout</a></li>
 <li><a href="https://github.com/17media/M17SDK-ios#setup-your-custom-layout-for-live-cells">Setup your custom layout for live cells</a></li>
@@ -155,28 +156,6 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework
 </ul>
 <pre class="highlight plaintext"><code>@protocol M17SDKLiveCellLayout;
 </code></pre>
-<h3 id='classes-enums-and-protocols' class='heading'>Classes, Enums and Protocols</h3>
-<h4 id='m17sdk' class='heading'>M17SDK</h4>
-
-<p>In charge of validating license key and launch the SDK.</p>
-<h4 id='m17sdkconfiguration' class='heading'>M17SDKConfiguration</h4>
-
-<p>To setup a set of configurations for <em>M17SDK</em> launcher.</p>
-<h4 id='m17sdkautherror' class='heading'>M17SDKAuthError</h4>
-
-<p>Error codes of SDK authorization error.</p>
-<h4 id='m17sdklivefilterfactory' class='heading'>M17SDKLiveFilterFactory</h4>
-
-<p>Get region filters, label filters and user Id filters from this factory. These filters is used to define the live rooms that you want to show on live list.</p>
-<h4 id='m17sdkrootcoordinator' class='heading'>M17SDKRootCoordinator</h4>
-
-<p>In charge of generating and navigating view controllers.</p>
-<h4 id='m17sdklivelistconfiguration' class='heading'>M17SDKLiveListConfiguration</h4>
-
-<p>To setup a set of configurations for live list view controller.</p>
-<h4 id='m17sdklivecelllayout' class='heading'>M17SDKLiveCellLayout</h4>
-
-<p>This protocol defines the abstract interfaces of the live cell layout. Confirm this protocol to customize your own live cells.</p>
 <h3 id='launch-sdk' class='heading'>Launch SDK</h3>
 <pre class="highlight plaintext"><code>// Create config by licenses key.
 M17SDKConfiguration *config = [[M17SDKConfiguration alloc] initWithLicenseKey:@"jYfYR8jmh5AQTlCciBv2"];
