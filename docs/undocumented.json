@@ -1,0 +1,19 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/racing/17-ios-sdk/M17SDK/M17SDK/M17SDK.h",
+      "line": 12,
+      "symbol": "M17SDKVersionNumber",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/racing/17-ios-sdk/M17SDK/M17SDK/M17SDK.h",
+      "line": 15,
+      "symbol": "M17SDKVersionString",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/racing/M17SDK-ios"
+}
