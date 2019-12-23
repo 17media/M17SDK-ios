@@ -2,11 +2,11 @@
 
 For complete document, welcome to visit our [document page](https://17media.github.io/M17SDK-ios/).
 
-- [Intallation](https://github.com/17media/M17SDK-ios#intallation)
-- [Usage](https://github.com/17media/M17SDK-ios#Usage)
-- [Launch SDK](https://github.com/17media/M17SDK-ios#launch-sdk)
-- [Create live list view controller in default cell layout](https://github.com/17media/M17SDK-ios#create-live-list-view-controller-in-default-cell-layout)
-- [Setup your custom layout for live cells](https://github.com/17media/M17SDK-ios#setup-your-custom-layout-for-live-cells)
+- [Intallation](#intallation)
+- [Usage](#usage)
+- [Launch SDK](#launch-sdk)
+- [Create live list view controller in default cell layout](#create-live-list-view-controller-with-default-cell-layout)
+- [Setup your custom layout for live cells](#setup-your-custom-layout-for-live-cells)
 
 ## Intallation
 ### Prerequisites
