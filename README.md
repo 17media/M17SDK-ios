@@ -18,14 +18,14 @@ To use the M17SDK for iOS Swift and Objective-C, you need:
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate M17SDK into your Xcode project using CocoaPods, specify it in your _Podfile_:
 
     
-    pod 'M17SDK', '0.1.0-rc.3'
+    pod 'M17SDK', '0.1.0-rc.6'
     
 
 ### Carthage
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate M17SDK into your Xcode project using Carthage, specify it in your _Cartfile_:
 
     
-    github "17media/M17SDK-ios" "0.1.0-rc.3"
+    github "17media/M17SDK-ios" "0.1.0-rc.6"
     github "SDWebImage/SDWebImage" ~> 5.0.0
     github "SnapKit/SnapKit" ~> 5.0.0
     github "pubnub/swift" ~> 2.0
@@ -40,6 +40,12 @@ Add the paths to the frameworks you want to use under “Input Files". For examp
     $(SRCROOT)/Carthage/Build/iOS/PubNub.framework
     $(SRCROOT)/Carthage/Build/iOS/SDWebImage.framework
     $(SRCROOT)/Carthage/Build/iOS/SnapKit.framework
+    $(SRCROOT)/Carthage/Build/iOS/Ably.framework
+    $(SRCROOT)/Carthage/Build/iOS/KSCrashAblyFork.framework
+    $(SRCROOT)/Carthage/Build/iOS/SAMKeychain.framework
+    $(SRCROOT)/Carthage/Build/iOS/SocketRocketAblyFork.framework
+    $(SRCROOT)/Carthage/Build/iOS/ULID.framework
+    $(SRCROOT)/Carthage/Build/iOS/msgpack.framework
 
 Add the paths to the copied frameworks to the “Output Files”. For example:
 
@@ -47,6 +53,12 @@ Add the paths to the copied frameworks to the “Output Files”. For example:
     $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PubNub.framework
     $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SDWebImage.framework
     $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework
+    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Ably.framework
+    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/KSCrashAblyFork.framework
+    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SAMKeychain.framework
+    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SocketRocketAblyFork.framework
+    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ULID.framework
+    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/msgpack.framework
 
 ## Usage
 ### Import
