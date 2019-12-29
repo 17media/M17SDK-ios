@@ -13,7 +13,7 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (93% documented)</p>
+        <p><a href="index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -26,17 +26,6 @@
     <div class="content-wrapper">
       <nav class="sidebar">
         <ul class="nav-groups">
-          <li class="nav-group-name">
-            <a href="Constants.html">Constants</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Constants.html#/c:@M17SDKVersionNumber">M17SDKVersionNumber</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Constants.html#/c:@M17SDKVersionString">M17SDKVersionString</a>
-              </li>
-            </ul>
-          </li>
           <li class="nav-group-name">
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
@@ -96,11 +85,12 @@
 <p>For complete document, welcome to visit our <a href="https://17media.github.io/M17SDK-ios/">document page</a>.</p>
 
 <ul>
-<li><a href="https://github.com/17media/M17SDK-ios#intallation">Intallation</a></li>
-<li><a href="https://github.com/17media/M17SDK-ios#Usage">Usage</a></li>
-<li><a href="https://github.com/17media/M17SDK-ios#launch-sdk">Launch SDK</a></li>
-<li><a href="https://github.com/17media/M17SDK-ios#create-live-list-view-controller-in-default-cell-layout">Create live list view controller in default cell layout</a></li>
-<li><a href="https://github.com/17media/M17SDK-ios#setup-your-custom-layout-for-live-cells">Setup your custom layout for live cells</a></li>
+<li><a href="#intallation">Intallation</a></li>
+<li><a href="#configuring">Configuring</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#launch-sdk">Launch SDK</a></li>
+<li><a href="#create-live-list-view-controller-with-default-cell-layout">Create live list view controller in default cell layout</a></li>
+<li><a href="#setup-your-custom-layout-for-live-cells">Setup your custom layout for live cells</a></li>
 </ul>
 <h2 id='intallation' class='heading'>Intallation</h2>
 <h3 id='prerequisites' class='heading'>Prerequisites</h3>
@@ -114,15 +104,16 @@
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
 <p><a href="https://cocoapods.org/">CocoaPods</a> is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate M17SDK into your Xcode project using CocoaPods, specify it in your <em>Podfile</em>:</p>
-<pre class="highlight plaintext"><code>pod 'M17SDK', '0.1.0-rc.1'
+<pre class="highlight plaintext"><code>pod 'M17SDK', '0.1.0-rc.7'
 </code></pre>
 <h3 id='carthage' class='heading'>Carthage</h3>
 
 <p><a href="https://github.com/Carthage/Carthage">Carthage</a> is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate M17SDK into your Xcode project using Carthage, specify it in your <em>Cartfile</em>:</p>
-<pre class="highlight plaintext"><code>github "17media/M17SDK-ios" "0.1.0-rc.1"
+<pre class="highlight plaintext"><code>github "17media/M17SDK-ios" "0.1.0-rc.7"
 github "SDWebImage/SDWebImage" ~&gt; 5.0.0
 github "SnapKit/SnapKit" ~&gt; 5.0.0
 github "pubnub/swift" ~&gt; 2.0
+github "ably/ably-ios" ~&gt; 1.1.15
 </code></pre>
 
 <p>On your application targets’ Build Phases settings tab, click the + icon and choose New Run Script Phase. Create a Run Script in which you specify your shell (ex: /bin/sh), add the following contents to the script area below the shell:</p>
@@ -134,6 +125,12 @@ github "pubnub/swift" ~&gt; 2.0
 $(SRCROOT)/Carthage/Build/iOS/PubNub.framework
 $(SRCROOT)/Carthage/Build/iOS/SDWebImage.framework
 $(SRCROOT)/Carthage/Build/iOS/SnapKit.framework
+$(SRCROOT)/Carthage/Build/iOS/Ably.framework
+$(SRCROOT)/Carthage/Build/iOS/KSCrashAblyFork.framework
+$(SRCROOT)/Carthage/Build/iOS/SAMKeychain.framework
+$(SRCROOT)/Carthage/Build/iOS/SocketRocketAblyFork.framework
+$(SRCROOT)/Carthage/Build/iOS/ULID.framework
+$(SRCROOT)/Carthage/Build/iOS/msgpack.framework
 </code></pre>
 
 <p>Add the paths to the copied frameworks to the “Output Files”. For example:</p>
@@ -141,6 +138,20 @@ $(SRCROOT)/Carthage/Build/iOS/SnapKit.framework
 $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PubNub.framework
 $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SDWebImage.framework
 $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework
+$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Ably.framework
+$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/KSCrashAblyFork.framework
+$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SAMKeychain.framework
+$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SocketRocketAblyFork.framework
+$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ULID.framework
+$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/msgpack.framework
+</code></pre>
+<h2 id='configuring' class='heading'>Configuring</h2>
+
+<p>Insert the following properties into your <em>Info.plist</em> file.</p>
+<pre class="highlight plaintext"><code>&lt;key&gt;LSApplicationQueriesSchemes&lt;/key&gt;
+&lt;array&gt;
+    &lt;string&gt;medai17&lt;/string&gt;
+&lt;/array&gt;
 </code></pre>
 <h2 id='usage' class='heading'>Usage</h2>
 <h3 id='import' class='heading'>Import</h3>
@@ -232,7 +243,7 @@ UIViewController *vc = [root createLiveListViewControllerWithConfig:config];
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-12-18)</p>
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-12-30)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
