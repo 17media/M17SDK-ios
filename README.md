@@ -3,6 +3,7 @@
 For complete document, welcome to visit our [document page](https://17media.github.io/M17SDK-ios/).
 
 - [Intallation](#intallation)
+- [Configuring](#configuring)
 - [Usage](#usage)
 - [Launch SDK](#launch-sdk)
 - [Create live list view controller in default cell layout](#create-live-list-view-controller-with-default-cell-layout)
@@ -18,17 +19,18 @@ To use the M17SDK for iOS Swift and Objective-C, you need:
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate M17SDK into your Xcode project using CocoaPods, specify it in your _Podfile_:
 
     
-    pod 'M17SDK', '0.1.0-rc.6'
+    pod 'M17SDK', '0.1.0-rc.7'
     
 
 ### Carthage
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate M17SDK into your Xcode project using Carthage, specify it in your _Cartfile_:
 
     
-    github "17media/M17SDK-ios" "0.1.0-rc.6"
+    github "17media/M17SDK-ios" "0.1.0-rc.7"
     github "SDWebImage/SDWebImage" ~> 5.0.0
     github "SnapKit/SnapKit" ~> 5.0.0
     github "pubnub/swift" ~> 2.0
+    github "ably/ably-ios" ~> 1.1.15
     
 On your application targets’ Build Phases settings tab, click the + icon and choose New Run Script Phase. Create a Run Script in which you specify your shell (ex: /bin/sh), add the following contents to the script area below the shell:
 
@@ -59,6 +61,14 @@ Add the paths to the copied frameworks to the “Output Files”. For example:
     $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SocketRocketAblyFork.framework
     $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ULID.framework
     $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/msgpack.framework
+
+## Configuring
+Insert the following properties into your _Info.plist_ file.
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>medai17</string>
+    </array>
 
 ## Usage
 ### Import
