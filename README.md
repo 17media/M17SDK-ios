@@ -18,10 +18,8 @@ To use the M17SDK for iOS Swift and Objective-C, you need:
 ### CocoaPods
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate M17SDK into your Xcode project using CocoaPods, specify it in your _Podfile_:
 
-    
     pod 'M17SDK', '0.1.0-rc.8'
     
-
 ### Carthage
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate M17SDK into your Xcode project using Carthage, specify it in your _Cartfile_:
 
@@ -67,10 +65,12 @@ Add the paths to the copied frameworks to the “Output Files”. For example:
 ## Configuring
 Insert the following properties into your _Info.plist_ file.
 
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>medai17</string>
-    </array>
+```xml
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>medai17</string>
+</array>
+```
 
 ## Usage
 ### Import
