@@ -5,9 +5,6 @@ For complete document, welcome to visit our [document page](https://17media.gith
 - [Intallation](#intallation)
 - [Configuring](#configuring)
 - [Usage](#usage)
-- [Launch SDK](#launch-sdk)
-- [Create live list view controller in default cell layout](#create-live-list-view-controller-with-default-cell-layout)
-- [Setup your custom layout for live cells](#setup-your-custom-layout-for-live-cells)
 
 ## Intallation
 ### Prerequisites
@@ -18,13 +15,13 @@ To use the M17SDK for iOS Swift and Objective-C, you need:
 ### CocoaPods
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate M17SDK into your Xcode project using CocoaPods, specify it in your _Podfile_:
 
-    pod 'M17SDK', '0.1.0-rc.8'
+    pod 'M17SDK', '~> 1.0.0'
     
 ### Carthage
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate M17SDK into your Xcode project using Carthage, specify it in your _Cartfile_:
 
     
-    github "17media/M17SDK-ios" "0.1.0-rc.8"
+    github "17media/M17SDK-ios" ~> 1.0.0
     github "17media/WSMTS" "1.0.1"
     github "17media/ijkplayer" "1.2.7"
     github "SDWebImage/SDWebImage" ~> 5.0.0
