@@ -2,11 +2,11 @@
 
 For complete document, welcome to visit our [document page](https://17media.github.io/M17SDK-ios/).
 
-- [Intallation](#intallation)
+- [Installation](#installation)
 - [Configuring](#configuring)
 - [Usage](#usage)
 
-## Intallation
+## Installation
 ### Prerequisites
 To use the M17SDK for iOS Swift and Objective-C, you need:
 - iOS 10.0 or later as the deployment target.
@@ -20,7 +20,6 @@ To use the M17SDK for iOS Swift and Objective-C, you need:
 ### Carthage
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate M17SDK into your Xcode project using Carthage, specify it in your _Cartfile_:
 
-    
     github "17media/M17SDK-ios" ~> 1.0.0
     github "17media/WSMTS" "1.0.1"
     github "17media/ijkplayer" "1.2.7"
@@ -29,7 +28,7 @@ To use the M17SDK for iOS Swift and Objective-C, you need:
     github "pubnub/swift" ~> 2.0
     github "ably/ably-ios" ~> 1.1.15
     
-On your application targets’ Build Phases settings tab, click the + icon and choose New Run Script Phase. Create a Run Script in which you specify your shell (ex: /bin/sh), add the following contents to the script area below the shell:
+On your application targets’ Build Phases settings tab, click the + icon and select _New Run Script Phase_. Create a Run Script in which you specify your shell (ex: /bin/sh), add the following contents to the script area below the shell:
 
     /usr/local/bin/carthage copy-frameworks
 
@@ -68,6 +67,10 @@ Insert the following properties into your _Info.plist_ file.
     <string>medai17</string>
 </array>
 ```
+
+To make live room support background play, on your application targets’ Signing & Capabilities tab, click the +Capability icon and select _Background Modes_. Tick _Audio, AirPlay, and Picture in Picture_ mode.
+
+![image](https://github.com/17media/M17SDK-ios/blob/master/Enable-background-mode.png)
 
 ## Usage
 ### Import
