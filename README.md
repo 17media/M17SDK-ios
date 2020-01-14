@@ -15,12 +15,12 @@ To use the M17SDK for iOS Swift and Objective-C, you need:
 ### CocoaPods
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate M17SDK into your Xcode project using CocoaPods, specify it in your _Podfile_:
 
-    pod 'M17SDK', '~> 1.0.0'
+    pod 'M17SDK', '~> 1.0.1'
     
 ### Carthage
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate M17SDK into your Xcode project using Carthage, specify it in your _Cartfile_:
 
-    github "17media/M17SDK-ios" ~> 1.0.0
+    github "17media/M17SDK-ios" ~> 1.0.1
     github "17media/WSMTS" "1.0.1"
     github "17media/ijkplayer" "1.2.7"
     github "SDWebImage/SDWebImage" ~> 5.0.0
@@ -110,7 +110,7 @@ config.userIdentifier = @"My user UUID";
 - **Please make sure that you call others M17 SDK APIs after the launch completion callback returned without any errors,** or you would get unexpected result. For example, you would get _nil_ value when creating _LiveListViewController_.
 - If you get the error, please check the error message. Please refer _M17SDKAuthError_ and use _Switch-case_ to handle the error properly.
 
-### Create live list view controller with default cell layout
+### Create live list view controller with default cell layout and listen live list contentOffset changed
 
 ```objective-c
 /**
@@ -126,7 +126,10 @@ M17SDKLiveListConfiguration *config = [[M17SDKLiveListConfiguration alloc] initW
 M17SDKRootCoordinator *root = [[M17SDKRootCoordinator alloc] init];
 
 // Create a new live list view controller by cofig.
-UIViewController *vc = [root createLiveListViewControllerWithConfiguration:config];
+M17SDKLiveListViewController *vc = [root createLiveListViewControllerWithConfiguration:config];
+
+// Set LiveListViewControllerDelegate to object which you want to handle live list contentOffset changed
+vc.delegate = self
 
 // Embed, present ,push or do whatever you want.
 [self presentViewController:vc animated:YES completion:nil];
