@@ -128,9 +128,6 @@ M17SDKRootCoordinator *root = [[M17SDKRootCoordinator alloc] init];
 // Create a new live list view controller by cofig.
 M17SDKLiveListViewController *vc = [root createLiveListViewControllerWithConfiguration:config];
 
-// Set LiveListViewControllerDelegate to object which you want to handle live list contentOffset changed
-vc.delegate = self
-
 // Embed, present ,push or do whatever you want.
 [self presentViewController:vc animated:YES completion:nil];
 ```
@@ -161,4 +158,22 @@ config.liveCellLayoutHandler = ^UIView<M17SDKLiveCellLayout> * _Nonnull{
 };
 
 UIViewController *vc = [root createLiveListViewControllerWithConfig:config];
+```
+
+### Observe live list scroll
+1. Make object which you want to handle live list contentOffset changed conform LiveListViewControllerDelegate
+```objective-c
+@interface ViewController ()<M17SDKLiveListViewControllerDelegate>
+```
+
+2. Implement LiveListViewControllerDelegate method
+```objective-c
+- (void)liveListViewController:(M17SDKLiveListViewController *)viewController didScrollTo:(CGPoint)contentOffset 
+```
+
+3. Assign delegate after init LiveListViewController
+```
+M17SDKLiveListViewController *vc = [root createLiveListViewControllerWithConfiguration:config];
+
+vc.delegate = delegateObject
 ```
