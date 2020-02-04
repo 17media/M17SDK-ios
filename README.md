@@ -15,12 +15,12 @@ To use the M17SDK for iOS Swift and Objective-C, you need:
 ### CocoaPods
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate M17SDK into your Xcode project using CocoaPods, specify it in your _Podfile_:
 
-    pod 'M17SDK', '~> 1.0.1'
+    pod 'M17SDK', '~> 1.1.2'
     
 ### Carthage
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate M17SDK into your Xcode project using Carthage, specify it in your _Cartfile_:
 
-    github "17media/M17SDK-ios" ~> 1.0.1
+    github "17media/M17SDK-ios" ~> 1.1.2
     github "17media/WSMTS" "1.0.1"
     github "17media/ijkplayer" "1.2.7"
     github "SDWebImage/SDWebImage" ~> 5.0.0
@@ -160,7 +160,7 @@ config.liveCellLayoutHandler = ^UIView<M17SDKLiveCellLayout> * _Nonnull{
 UIViewController *vc = [root createLiveListViewControllerWithConfig:config];
 ```
 
-### Observe live list scroll
+### Observe live list scroll properties
 1. Make object which you want to handle live list contentOffset changed conform LiveListViewControllerDelegate
 ```objective-c
 @interface ViewController ()<M17SDKLiveListViewControllerDelegate>
@@ -168,7 +168,8 @@ UIViewController *vc = [root createLiveListViewControllerWithConfig:config];
 
 2. Implement LiveListViewControllerDelegate method
 ```objective-c
-- (void)liveListViewController:(M17SDKLiveListViewController *)viewController didScrollTo:(CGPoint)contentOffset 
+- (void)liveListViewController:(M17SDKLiveListViewController *)viewController didScrollTo:(CGPoint)contentOffset
+- (void)liveListViewController:(M17SDKLiveListViewController *)viewController contentSizeDidChange:(CGSize)contentSize
 ```
 
 3. Assign delegate after init LiveListViewController
