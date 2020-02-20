@@ -105,6 +105,27 @@ config.userIdentifier = @"My user UUID";
 }];
 ```
 
+### External User ID
+An external user ID is used to associate with M17 account. There's some features require users binding their account to M17 account beforehand. In this case, you have to set your user id as your external user id. If the external user id haven't been set, the app will prompt an error message if the feature requires users binding 17 account.
+
+
+#### How to set it
+Just simply call `updateExternalUserID(_:) in `M17SDK` class.
+
+In practical, you can specify your user id to our SDK in two common cases,
+1. Update external user id after setting up M17SDK.
+2. Update external user id once your user logged in and has a user id.
+
+Example code
+```objective-c
+M17SDKConfiguration *config = [[M17SDKConfiguration alloc] initWithLicenseKey:kM17SDKLicenseKey];
+[M17SDK launchWithConfiguration:config completion:^(NSError * _Nullable error) {
+    /// ...
+}];
+[M17SDK updateExternalUserID:@"${THIRD_PARTY_APP_USER_ID}"];
+```
+
+
 #### Troubleshooting
 - If you need the accurate data report from M17 side, you **MUST** set the _userIdentifier_ in config to bind the 17 App user with the user of your own App.
 - **Please make sure that you call others M17 SDK APIs after the launch completion callback returned without any errors,** or you would get unexpected result. For example, you would get _nil_ value when creating _LiveListViewController_.
