@@ -89,9 +89,6 @@ To make live room support background play, on your application targets’ Signin
 // Create config by licenses key.
 M17SDKConfiguration *config = [[M17SDKConfiguration alloc] initWithLicenseKey:@"jYfYR8jmh5AQTlCciBv2"];
 
-// Set the user UUID of your platform to SDK if needed.
-config.userIdentifier = @"My user UUID";
-
 // Launch the SDK.
 [M17SDK launchWithConfiguration:config completion:^(NSError * _Nullable error) {
 	if (!error) {
@@ -107,7 +104,7 @@ An external user ID is used to associate with M17 account. There's some features
 
 
 #### How to set it
-Just simply call `updateExternalUserID(_:) in `M17SDK` class.
+Just simply call `updateExternalUserID(_:)`, a static method of `M17SDK` class.
 
 In practical, you can specify your user id to our SDK in two common cases,
 1. Update external user id after setting up M17SDK.
@@ -124,7 +121,7 @@ M17SDKConfiguration *config = [[M17SDKConfiguration alloc] initWithLicenseKey:kM
 
 
 #### Troubleshooting
-- If you need the accurate data report from M17 side, you **MUST** set the _userIdentifier_ in config to bind the 17 App user with the user of your own App.
+- If you need accurate data report from M17 side, you **MUST** update the `externalUserID` by calling `M17SDK.updateExternalUserID(:_)` to associated your user identifier to 17 App user.
 - **Please make sure that you call others M17 SDK APIs after the launch completion callback returned without any errors,** or you would get unexpected result. For example, you would get _nil_ value when creating _LiveListViewController_.
 - If you get the error, please check the error message. Please refer _M17SDKAuthError_ and use _Switch-case_ to handle the error properly.
 
