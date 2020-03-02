@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>RootCoordinator Class Reference</title>
+    <title>LiveListViewControllerDelegate Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/RootCoordinator" class="dashAnchor"></a>
-    <a title="RootCoordinator Class Reference"></a>
+    <a name="//apple_ref/swift/Protocol/LiveListViewControllerDelegate" class="dashAnchor"></a>
+    <a title="LiveListViewControllerDelegate Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (95% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        RootCoordinator Class Reference
+        LiveListViewControllerDelegate Protocol Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -97,16 +97,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>RootCoordinator</h1>
+            <h1>LiveListViewControllerDelegate</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">@objc(M17SDKRootCoordinator)</span>
-<span class="kd">@objcMembers</span>
-<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">RootCoordinator</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@objc(M17SDKLiveListViewControllerDelegate)</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">LiveListViewControllerDelegate</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                 </div>
               </div>
-            <p>M17SDK root coordinator, for generating and navigating view controllers.</p>
+            <p>A <code>LiveListViewControllerDelegate</code> defines methods you can use to receive messages from <code><a href="../Classes/LiveListViewController.html">LiveListViewController</a></code>.</p>
 
           </section>
           <section class="section task-group-section">
@@ -115,9 +114,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@M17SDK@objc(cs)M17SDKRootCoordinator(im)createLiveListViewControllerWithConfiguration:"></a>
-                    <a name="//apple_ref/swift/Method/createLiveListViewController(configuration:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@M17SDK@objc(cs)M17SDKRootCoordinator(im)createLiveListViewControllerWithConfiguration:">createLiveListViewController(configuration:)</a>
+                    <a name="/c:@M@M17SDK@objc(pl)M17SDKLiveListViewControllerDelegate(im)liveListViewController:didScrollTo:"></a>
+                    <a name="//apple_ref/swift/Method/liveListViewController(_:didScrollTo:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@M17SDK@objc(pl)M17SDKLiveListViewControllerDelegate(im)liveListViewController:didScrollTo:">liveListViewController(_:didScrollTo:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -125,14 +124,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create live list page.</p>
+                        <p>Tells the delegate when the user scrolls the content view within the receiver.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">createLiveListViewController</span><span class="p">(</span><span class="nv">configuration</span><span class="p">:</span> <span class="kt"><a href="../Classes/LiveListConfiguration.html">LiveListConfiguration</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/LiveListViewController.html">LiveListViewController</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">liveListViewController</span><span class="p">(</span><span class="n">_</span> <span class="nv">viewController</span><span class="p">:</span> <span class="kt"><a href="../Classes/LiveListViewController.html">LiveListViewController</a></span><span class="p">,</span> <span class="n">didScrollTo</span> <span class="nv">contentOffset</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -143,23 +143,88 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>configuration</em>
+                                <em>viewController</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The <code><a href="../Classes/LiveListConfiguration.html">LiveListConfiguration</a></code>, live list
-             configuration which could include region, label, user id and
-             custom cell layout handler.</p>
+                                  <p>The view-controller where the user ended the touch</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>contentOffset</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The content when the scrolling did scroll</p>
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@M17SDK@objc(pl)M17SDKLiveListViewControllerDelegate(im)liveListViewController:contentSizeDidChange:"></a>
+                    <a name="//apple_ref/swift/Method/liveListViewController(_:contentSizeDidChange:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@M17SDK@objc(pl)M17SDKLiveListViewControllerDelegate(im)liveListViewController:contentSizeDidChange:">liveListViewController(_:contentSizeDidChange:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Tells the delegate when the user scrolls the content view within the receiver.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">liveListViewController</span><span class="p">(</span><span class="n">_</span> <span class="nv">viewController</span><span class="p">:</span> <span class="kt"><a href="../Classes/LiveListViewController.html">LiveListViewController</a></span><span class="p">,</span> <span class="n">contentSizeDidChange</span> <span class="nv">contentSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
                       <div>
-                        <h4>Return Value</h4>
-                        <p>The created <code>UIViewController</code>, live list page.</p>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>viewController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The view-controller where the user ended the touch</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>contentSize</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The contentSize of scroll-view</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>

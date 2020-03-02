@@ -13,7 +13,7 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (100% documented)</p>
+        <p><a href="index.html"> Docs</a> (95% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -27,6 +27,17 @@
       <nav class="sidebar">
         <ul class="nav-groups">
           <li class="nav-group-name">
+            <a href="Constants.html">Constants</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Constants.html#/c:@M17SDKVersionNumber">M17SDKVersionNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Constants.html#/c:@M17SDKVersionString">M17SDKVersionString</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -37,6 +48,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/LiveListConfiguration.html">LiveListConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/LiveListViewController.html">LiveListViewController</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/M17SDK.html">M17SDK</a>
@@ -60,6 +74,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Protocols/LiveCellLayout.html">LiveCellLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/LiveListViewControllerDelegate.html">LiveListViewControllerDelegate</a>
               </li>
             </ul>
           </li>
@@ -85,11 +102,11 @@
 <p>For complete document, welcome to visit our <a href="https://17media.github.io/M17SDK-ios/">document page</a>.</p>
 
 <ul>
-<li><a href="#intallation">Intallation</a></li>
+<li><a href="#installation">Installation</a></li>
 <li><a href="#configuring">Configuring</a></li>
 <li><a href="#usage">Usage</a></li>
 </ul>
-<h2 id='intallation' class='heading'>Intallation</h2>
+<h2 id='installation' class='heading'>Installation</h2>
 <h3 id='prerequisites' class='heading'>Prerequisites</h3>
 
 <p>To use the M17SDK for iOS Swift and Objective-C, you need:</p>
@@ -101,21 +118,20 @@
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
 <p><a href="https://cocoapods.org/">CocoaPods</a> is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate M17SDK into your Xcode project using CocoaPods, specify it in your <em>Podfile</em>:</p>
-<pre class="highlight plaintext"><code>pod 'M17SDK', '~&gt; 1.0.0'
+<pre class="highlight plaintext"><code>pod 'M17SDK', '~&gt; 1.2.1'
 </code></pre>
 <h3 id='carthage' class='heading'>Carthage</h3>
 
 <p><a href="https://github.com/Carthage/Carthage">Carthage</a> is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate M17SDK into your Xcode project using Carthage, specify it in your <em>Cartfile</em>:</p>
-<pre class="highlight plaintext"><code>github "17media/M17SDK-ios" ~&gt; 1.0.0
+<pre class="highlight plaintext"><code>github "17media/M17SDK-ios" ~&gt; 1.2.1
 github "17media/WSMTS" "1.0.1"
 github "17media/ijkplayer" "1.2.7"
 github "SDWebImage/SDWebImage" ~&gt; 5.0.0
-github "SnapKit/SnapKit" ~&gt; 5.0.0
 github "pubnub/swift" ~&gt; 2.0
 github "ably/ably-ios" ~&gt; 1.1.15
 </code></pre>
 
-<p>On your application targets’ Build Phases settings tab, click the + icon and choose New Run Script Phase. Create a Run Script in which you specify your shell (ex: /bin/sh), add the following contents to the script area below the shell:</p>
+<p>On your application targets’ Build Phases settings tab, click the + icon and select <em>New Run Script Phase</em>. Create a Run Script in which you specify your shell (ex: /bin/sh), add the following contents to the script area below the shell:</p>
 <pre class="highlight plaintext"><code>/usr/local/bin/carthage copy-frameworks
 </code></pre>
 
@@ -123,7 +139,6 @@ github "ably/ably-ios" ~&gt; 1.1.15
 <pre class="highlight plaintext"><code>$(SRCROOT)/Carthage/Build/iOS/M17SDK.framework
 $(SRCROOT)/Carthage/Build/iOS/PubNub.framework
 $(SRCROOT)/Carthage/Build/iOS/SDWebImage.framework
-$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework
 $(SRCROOT)/Carthage/Build/iOS/Ably.framework
 $(SRCROOT)/Carthage/Build/iOS/KSCrashAblyFork.framework
 $(SRCROOT)/Carthage/Build/iOS/SAMKeychain.framework
@@ -136,7 +151,6 @@ $(SRCROOT)/Carthage/Build/iOS/msgpack.framework
 <pre class="highlight plaintext"><code>$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/M17SDK.framework
 $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PubNub.framework
 $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SDWebImage.framework
-$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework
 $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Ably.framework
 $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/KSCrashAblyFork.framework
 $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SAMKeychain.framework
@@ -152,6 +166,10 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/msgpack.framework
     <span class="nt">&lt;string&gt;</span>medai17<span class="nt">&lt;/string&gt;</span>
 <span class="nt">&lt;/array&gt;</span>
 </code></pre>
+
+<p>To make live room support background play, on your application targets’ Signing &amp; Capabilities tab, click the +Capability icon and select <em>Background Modes</em>. Tick <em>Audio, AirPlay, and Picture in Picture</em> mode.</p>
+
+<p><img src="https://github.com/17media/M17SDK-ios/blob/master/Enable-background-mode.png" alt="image"></p>
 <h2 id='usage' class='heading'>Usage</h2>
 <h3 id='import' class='heading'>Import</h3>
 
@@ -170,9 +188,6 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/msgpack.framework
 <pre class="highlight plaintext"><code>// Create config by licenses key.
 M17SDKConfiguration *config = [[M17SDKConfiguration alloc] initWithLicenseKey:@"jYfYR8jmh5AQTlCciBv2"];
 
-// Set the user UUID of your platform to SDK if needed.
-config.userIdentifier = @"My user UUID";
-
 // Launch the SDK.
 [M17SDK launchWithConfiguration:config completion:^(NSError * _Nullable error) {
     if (!error) {
@@ -182,14 +197,35 @@ config.userIdentifier = @"My user UUID";
     }
 }];
 </code></pre>
+<h3 id='external-user-id' class='heading'>External User ID</h3>
+
+<p>An external user ID is used to associate with M17 account. There&rsquo;s some features require users binding their account to M17 account beforehand. In this case, you have to set your user id as your external user id. If the external user id haven&rsquo;t been set, the app will prompt an error message if the feature requires users binding 17 account.</p>
+<h4 id='how-to-set-it' class='heading'>How to set it</h4>
+
+<p>Just simply call <code>updateExternalUserID(_:)</code>, a static method of <code><a href="Classes/M17SDK.html">M17SDK</a></code> class.</p>
+
+<p>In practical, you can specify your user id to our SDK in two common cases,</p>
+
+<ol>
+<li>Update external user id after setting up M17SDK.</li>
+<li>Update external user id once your user logged in and has a user id.</li>
+</ol>
+
+<p>Example code</p>
+<pre class="highlight plaintext"><code>M17SDKConfiguration *config = [[M17SDKConfiguration alloc] initWithLicenseKey:kM17SDKLicenseKey];
+[M17SDK launchWithConfiguration:config completion:^(NSError * _Nullable error) {
+    /// ...
+}];
+[M17SDK updateExternalUserID:@"${THIRD_PARTY_APP_USER_ID}"];
+</code></pre>
 <h4 id='troubleshooting' class='heading'>Troubleshooting</h4>
 
 <ul>
-<li>If you need the accurate data report from M17 side, you <strong>MUST</strong> set the <em>userIdentifier</em> in config to bind the 17 App user with the user of your own App.</li>
+<li>If you need accurate data report from M17 side, you <strong>MUST</strong> update the <code>externalUserID</code> by calling <code>M17SDK.updateExternalUserID(:_)</code> to associated your user identifier to 17 App user.</li>
 <li><strong>Please make sure that you call others M17 SDK APIs after the launch completion callback returned without any errors,</strong> or you would get unexpected result. For example, you would get <em>nil</em> value when creating <em>LiveListViewController</em>.</li>
 <li>If you get the error, please check the error message. Please refer <em>M17SDKAuthError</em> and use <em>Switch-case</em> to handle the error properly.</li>
 </ul>
-<h3 id='create-live-list-view-controller-with-default-cell-layout' class='heading'>Create live list view controller with default cell layout</h3>
+<h3 id='create-live-list-view-controller-with-default-cell-layout-and-listen-live-list-contentoffset-changed' class='heading'>Create live list view controller with default cell layout and listen live list contentOffset changed</h3>
 <pre class="highlight plaintext"><code>/**
  There are three types of filter. `regionFilters`, `labelFilters`, `userIdFilters`.
  These functions return all fiters by default. You can check the id and modify the array.
@@ -203,7 +239,7 @@ M17SDKLiveListConfiguration *config = [[M17SDKLiveListConfiguration alloc] initW
 M17SDKRootCoordinator *root = [[M17SDKRootCoordinator alloc] init];
 
 // Create a new live list view controller by cofig.
-UIViewController *vc = [root createLiveListViewControllerWithConfiguration:config];
+M17SDKLiveListViewController *vc = [root createLiveListViewControllerWithConfiguration:config];
 
 // Embed, present ,push or do whatever you want.
 [self presentViewController:vc animated:YES completion:nil];
@@ -238,12 +274,29 @@ UIViewController *vc = [root createLiveListViewControllerWithConfiguration:confi
 
 UIViewController *vc = [root createLiveListViewControllerWithConfig:config];
 </code></pre>
+<h3 id='observe-live-list-scroll-properties' class='heading'>Observe live list scroll properties</h3>
+
+<ol>
+<li><p>Make object which you want to handle live list contentOffset changed conform LiveListViewControllerDelegate</p>
+<pre class="highlight plaintext"><code>@interface ViewController ()&lt;M17SDKLiveListViewControllerDelegate&gt;
+</code></pre></li>
+<li><p>Implement LiveListViewControllerDelegate method</p>
+<pre class="highlight plaintext"><code>- (void)liveListViewController:(M17SDKLiveListViewController *)viewController didScrollTo:(CGPoint)contentOffset
+- (void)liveListViewController:(M17SDKLiveListViewController *)viewController contentSizeDidChange:(CGSize)contentSize
+</code></pre></li>
+<li><p>Assign delegate after init LiveListViewController</p>
+<pre class="highlight plaintext"><code>M17SDKLiveListViewController *vc = [root createLiveListViewControllerWithConfiguration:config];
+</code></pre></li>
+</ol>
+
+<p>vc.delegate = delegateObject</p>
+<pre class="highlight plaintext"><code></code></pre>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-01-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2020-03-02)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
