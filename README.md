@@ -15,15 +15,16 @@ To use the M17SDK for iOS Swift and Objective-C, you need:
 ### CocoaPods
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate M17SDK into your Xcode project using CocoaPods, specify it in your _Podfile_:
 
-    pod 'M17SDK', '~> 1.2.1'
+    pod 'M17SDK', '~> 1.3.0'
     
 ### Carthage
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate M17SDK into your Xcode project using Carthage, specify it in your _Cartfile_:
 
-    github "17media/M17SDK-ios" ~> 1.2.1
+    github "17media/M17SDK-ios" ~> 1.3.0
     github "17media/WSMTS" "1.0.1"
     github "17media/ijkplayer" "1.2.7"
     github "SDWebImage/SDWebImage" ~> 5.0.0
+    github "SDWebImage/SDWebImageWebPCoder"
     github "pubnub/swift" ~> 2.0
     github "ably/ably-ios" ~> 1.1.15
     
@@ -42,6 +43,8 @@ Add the paths to the frameworks you want to use under “Input Files". For examp
     $(SRCROOT)/Carthage/Build/iOS/SocketRocketAblyFork.framework
     $(SRCROOT)/Carthage/Build/iOS/ULID.framework
     $(SRCROOT)/Carthage/Build/iOS/msgpack.framework
+    $(SRCROOT)/Carthage/Build/iOS/SDWebImageWebPCoder.framework
+    $(SRCROOT)/Carthage/Build/iOS/libwebp.framework
 
 Add the paths to the copied frameworks to the “Output Files”. For example:
 
@@ -54,6 +57,8 @@ Add the paths to the copied frameworks to the “Output Files”. For example:
     $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SocketRocketAblyFork.framework
     $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ULID.framework
     $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/msgpack.framework
+    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SDWebImageWebPCoder.framework
+    $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libwebp.framework
 
 ## Configuring
 Insert the following properties into your _Info.plist_ file.
@@ -132,10 +137,13 @@ M17SDKConfiguration *config = [[M17SDKConfiguration alloc] initWithLicenseKey:kM
  There are three types of filter. `regionFilters`, `labelFilters`, `userIdFilters`.
  These functions return all fiters by default. You can check the id and modify the array.
 */
-NSArray<M17SDKRegionFilter *> *rfs =  [M17SDKLiveFilterFactory regionFilters];
+NSArray<M17SDKRegionFilter *> *regionFilters =  [M17SDKLiveFilterFactory regionFilters];
+NSArray<M17SDKUserIdFilter *> *userIdFilters = [M17SDKLiveFilterFactory userIdFilters];
 
-// You MUST initialize config with one kind of filter.
-M17SDKLiveListConfiguration *config = [[M17SDKLiveListConfiguration alloc] initWithRegions:rfs];;
+// You MUST initialize config with filters.
+M17SDKLiveListConfiguration *config = [[M17SDKLiveListConfiguration alloc] initWithRegions:regionFilters
+                                                                                        labels:nil
+                                                                                       userIds:userIdFilters];
 
 // Create the coordinator.
 M17SDKRootCoordinator *root = [[M17SDKRootCoordinator alloc] init];
