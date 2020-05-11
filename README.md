@@ -201,3 +201,9 @@ M17SDKLiveListViewController *vc = [root createLiveListViewControllerWithConfigu
 
 vc.delegate = delegateObject
 ```
+
+### Sign Out
+Call this method when log user out
+```
+[M17SDK signOut];
+```
